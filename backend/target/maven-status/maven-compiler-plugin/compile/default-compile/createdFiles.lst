@@ -1,0 +1,8 @@
+com\example\tap\service\UserService.class
+com\example\tap\model\SavedList.class
+com\example\tap\controller\AuthController.class
+com\example\tap\config\SecurityConfig.class
+com\example\tap\repository\UserRepository.class
+com\example\tap\TapApplication.class
+com\example\tap\model\User.class
+com\example\tap\repository\SavedListRepository.class

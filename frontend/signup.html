@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - DoggyFetch</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('dog.jpg') no-repeat center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .signup-wrapper {
+            background-color: #ffd6d6;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 380px;
+            position: relative;
+        }
+        .signup-wrapper img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid #ffb347;
+        }
+        h2 {
+            color: #4d3b3b;
+            margin-bottom: 20px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            background-color: #ff914d;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ff7029;
+        }
+        .login-link {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .login-link a {
+            color: #ff6f61;
+            text-decoration: none;
+        }
+        .paw-icon {
+            position: absolute;
+            top: -30px;
+            left: calc(50% - 30px);
+            width: 60px;
+        }
+        .error-msg {
+            color: #d8000c;
+            background: #ffd2d2;
+            border-radius: 8px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        .success-msg {
+            color: #4F8A10;
+            background: #DFF2BF;
+            border-radius: 8px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="signup-wrapper">
+    <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Dog Icon" class="paw-icon" />
+    <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png" alt="Cute Dog" />
+    <h2>Create your DoggyFetch account</h2>
+    <form id="signupForm">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Sign Up</button>
+    </form>
+    <div id="signupMsg"></div>
+    <div class="login-link">
+        <p>Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+</div>
+<script type="module">
+import { signup } from './js/auth.js';
+
+document.getElementById('signupForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const username = this.username.value;
+    const password = this.password.value;
+    const msgDiv = document.getElementById('signupMsg');
+    msgDiv.innerHTML = '';
+    try {
+        const res = await signup(username, password);
+        if (res.message) {
+            msgDiv.innerHTML = `<div class='success-msg'>${res.message} Redirecting to login...</div>`;
+            setTimeout(() => window.location.href = 'login.html', 1500);
+        } else if (res.error) {
+            msgDiv.innerHTML = `<div class='error-msg'>${res.error}</div>`;
+        } else {
+            msgDiv.innerHTML = `<div class='error-msg'>Unknown error occurred.</div>`;
+        }
+    } catch (err) {
+        msgDiv.innerHTML = `<div class='error-msg'>Signup failed. Please try again.</div>`;
+    }
+});
+</script>
+</body>
+</html> 

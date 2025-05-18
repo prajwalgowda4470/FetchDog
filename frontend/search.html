@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Dog Images</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Search Dog Images by Response Code</h1>
+        <div style="position:relative;">
+            <input type="text" id="filterInput" placeholder="Enter response code (e.g., 203, 2xx, 20x)">
+            <ul id="suggestions" style="list-style:none; padding:0; margin:0; background:#fff; border-radius:8px; box-shadow:0 2px 8px #ccc; position:absolute; z-index:10; width:90%; display:none;"></ul>
+        </div>
+        <input type="text" id="listNameInput" placeholder="Enter list name" style="margin-top:10px; width:90%; border-radius:8px; padding:8px;">
+        <button id="filterBtn">Filter</button>
+        <div id="results"></div>
+        <button id="saveListBtn">Save List</button>
+        <div id="saveMsg" style="margin-top:10px;"></div>
+    </div>
+    <script src="js/search.js"></script>
+</body>
+</html> 
